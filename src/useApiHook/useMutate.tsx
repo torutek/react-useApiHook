@@ -13,7 +13,7 @@ export interface MutateResult<ClientFunc extends (...args: any[]) => any> {
 
 export function useApiMutateBase<Client, InputFunc extends (...args: any[]) => any>
 	(
-		clientMethodGetter: (client: Client) => (InputFunc), // Method that returns the Client method to run. InputFunc is the method signature if the client method to run.
+		clientMethodGetter: (client: Client) => (InputFunc), // Method that returns the Client method to run. InputFunc is the method signature of the client method to run.
 		successMessage: string = 'Updated'
 	): MutateResult<InputFunc> {
 	const apiClientContext = useContext(ApiClientContext);
