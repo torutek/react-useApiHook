@@ -5,7 +5,7 @@ export type UseApiStatus = 'loading' | 'error' | 'success';
 export interface ApiContextType<ApiClientType> {
 	strictModeSkipDebugMountRequest: boolean;
 	apiClient: ApiClientType,
-	onSuccess: (messsage: string) => void;
+	onSuccess: (message: string) => void;
 	onError: (error: any) => void;
 }
 

@@ -9,8 +9,8 @@ interface ApiData<T> {
 
 interface UseApiResultWithSuccess<T> {
 	isLoading: boolean;
-	isError: boolean;
-	isSuccess: boolean;
+	isError: false;
+	isSuccess: true;
 	status: UseApiStatus;
 	result: T;
 	error: undefined;
@@ -29,8 +29,8 @@ interface UseApiResultLoading {
 
 interface UseApiResultWithError {
 	isLoading: boolean;
-	isError: boolean;
-	isSuccess: boolean;
+	isError: true;
+	isSuccess: false;
 	status: UseApiStatus;
 	result: undefined;
 	error: string;
@@ -75,7 +75,6 @@ export function useApiBase<C, T>(clientMethod: (client: C) => Promise<T> | undef
 				apiClient.onSuccess(successMessage);
 			}
 		} catch (error: any) {
-			console.error(error);
 			if (cancelRequest.current) {
 				return;
 			}
@@ -136,6 +135,6 @@ export function useApiBase<C, T>(clientMethod: (client: C) => Promise<T> | undef
 			result: undefined,
 			error: undefined,
 			refresh: load
-		} as UseApiResultLoading
+		}
 	}
 };

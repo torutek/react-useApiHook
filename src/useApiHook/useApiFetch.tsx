@@ -25,18 +25,16 @@ export class FetchClient<C> {
 				resolve({
 					error: undefined,
 					result: result
-				} as FetchObjSuccess<T>)
+				})
 
 				if (successMessage) {
 					this._apiContext.onSuccess(successMessage);
 				}
 			} catch (error) {
-				console.error(error);
-					
 				resolve({
 					error: error,
 					result: undefined
-				} as FetchObjError)
+				})
 
 				this._apiContext.onError(error);
 			}

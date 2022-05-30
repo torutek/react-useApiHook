@@ -26,7 +26,7 @@ when using ```useApiBase```
 
 AppTestClient is an instance of your Api client
 
-OnSucess and OnError are callbacks allowing you to hook into a Global notifier, in this case we are using Notistack
+OnSuccess and OnError are callbacks allowing you to hook into a Global notifier, in this case we are using Notistack
 
 OnError will pass exceptions thrown by your api client
 
@@ -77,6 +77,9 @@ const res = useApi(x => x.accessoryV1List("test"), "Loaded");
 const mutateAccessory = useApiMutate(x => x.accessoryV1Update, "Updated accessory");
 ```
 
+- useApiFetch use this to perform your own operations, loading + try + catch
+- useApi use this to load data on component mount, the success message is optional, you can also call res.refresh() to reload data.
+- mutateAccessory use this to perform api updates. i.e. await mutateAccessory.execute("new name", 123) will pass those two new values to the accessoryV1Update method (parameter intellisense supported)
 
 
 ## Available Scripts

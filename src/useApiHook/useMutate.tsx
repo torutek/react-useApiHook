@@ -30,7 +30,6 @@ export function useApiMutateBase<Client, InputFunc extends (...args: any[]) => a
 			setError(undefined);
 			apiClientContext.onSuccess(successMessage);
 		} catch (ex) {
-			console.error(ex);
 			setResult(undefined);
 			setError(ex);
 			apiClientContext.onError(ex);
@@ -43,7 +42,7 @@ export function useApiMutateBase<Client, InputFunc extends (...args: any[]) => a
 
 	return {
 		isLoading: loading,
-		isError: !!error,
+		isError: error !== undefined,
 		isSuccess: isSuccess,
 		status:  loading ? 'loading' : isSuccess ? 'success' : 'error',
 		result: result,
