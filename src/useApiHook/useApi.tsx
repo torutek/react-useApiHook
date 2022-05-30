@@ -94,10 +94,8 @@ export function useApiBase<C, T>(clientMethod: (client: C) => Promise<T> | undef
 		if (apiClient.strictModeSkipDebugMountRequest) {
 			// https://github.com/reactwg/react-18/discussions/19
 			// https://github.com/reactwg/react-18/discussions/18#discussioncomment-795661
-			//	console.log("useApi mount: " + window.performance.now() + "ms");
 			const firstRunLoad = setTimeout(() => load(), 10);
 			return () => {
-				//		console.log("useApi unmount: " + window.performance.now() + "ms");
 				clearTimeout(firstRunLoad);
 				cancelRequest.current = true
 			}

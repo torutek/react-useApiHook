@@ -1,18 +1,14 @@
-import React, { Suspense, useState } from 'react';
+import React, { useState } from 'react';
 import { useApi, useApiFetch, useApiMutate } from './configureUseApi';
-import { TestSuspenseComponent } from './testSuspenseComponent';
-
 
 export function ApiExampleComponent() {
 	const [count, setCount] = useState(0);
 	const [apiFetchObjResponse, setApiFetchObjResponse] = useState('');
 	const [apiFetchObjLoading, setApiFetchObjLoading] = useState(false);
-	const api = useApiFetch();
 
+	const api = useApiFetch();
 	const res = useApi(x => x.accessoryV1List("test"), "Loaded");
 	const mutateAccessory = useApiMutate(x => x.accessoryV1Update, "Updated acc " + count);
-
-	console.log("ApiExampleComponent");
 
 	return (
 		<div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr' }}>

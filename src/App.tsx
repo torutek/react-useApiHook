@@ -17,7 +17,7 @@ const SnackbarUtilsConfigurator: React.FunctionComponent = () => {
 var isDev = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
 
 var apiContextValue = {
-	strictModeSkipDebugMountRequest: isDev,
+	strictModeSkipDebugMountRequest: isDev, // Optional
 	apiClient: AppTestClient,
 	onSuccess: (message) => {
 		SnackbarRef.enqueueSnackbar(message, { variant: 'success' })
@@ -26,7 +26,6 @@ var apiContextValue = {
 		SnackbarRef.enqueueSnackbar('Request failed: ' + (error), { variant: 'error' })
 	}
 } as ApiContextType<TestClient>
-
 
 
 function App() {

@@ -1,6 +1,3 @@
-import { useContext } from "react";
-
-
 export interface TestResult {
 	accName: string;
 }
