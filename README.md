@@ -108,4 +108,4 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 from the useApiHook dir:
 - ```npm run build``` to generate the build output (might need to install ```tsc npm install -g typescript```)
 - Bump version number in package.json if needed
-- ```npm publish``` to push to NPM (might need to login, ```npm whoami```, ```npm adduser``` or ```npm login```)
+- ```npm publish --access=public``` to push to NPM (might need to login, ```npm whoami```, ```npm adduser``` or ```npm login```)
