@@ -7,11 +7,26 @@
     "build": "npx tsc --jsx react"
   },
   "repository": "https://github.com/torutek/react-useApiHook",
-  "keywords": ["react", "api", "wrapper", "hook", "async"],
-  "author": "",
+  "keywords": [
+    "react",
+    "api",
+    "wrapper",
+    "hook",
+    "async"
+  ],
+  "author": "Daniel Haselden",
   "license": "MIT",
+  "files": [
+    "package.json",
+    "README.md",
+    "dist/*.js",
+    "dist/*.ts"
+  ],
+  "dependencies": {
+    "@types/react": "^18.0.9",
+    "react": "^18.1.0"
+  },
   "devDependencies": {
     "typescript": "^4.7.2"
-  },
-  "files": ["package.json","README.md","dist/*.js","dist/*.ts"]
+  }
 }
