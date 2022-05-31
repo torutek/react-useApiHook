@@ -1,0 +1,16 @@
+{
+  "name": "react-use-api-hook",
+  "version": "1.0.1",
+  "description": "Api client hook wrapper",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tsc --jsx react"
+  },
+  "repository": "https://github.com/torutek/react-useApiHook",
+  "keywords": ["react", "api", "wrapper", "hook", "async"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.7.2"
+  }
+}
