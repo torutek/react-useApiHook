@@ -1,6 +1,6 @@
 import { useContext } from "react";
+import { ApiClientContext, ApiContextType, FetchClient, MutateResult, useApiBase, useApiMutateBase, UseApiResult } from "react-use-api-hook";
 import { TestClient } from "./fakeClient";
-import { ApiClientContext, ApiContextType, FetchClient, MutateResult, useApiBase, useApiMutateBase, UseApiResult } from "./useApiHook";
 
 export const AppTestClient = new TestClient();
 
@@ -17,5 +17,5 @@ export function useApiMutate<InputFunc extends (...args: any[]) => any>(
 
 export function useApiFetch(): FetchClient<TestClient> {
 	const apiContext = useContext(ApiClientContext);
-	return new FetchClient(apiContext as ApiContextType<TestClient>);
+	return new FetchClient<TestClient>(apiContext as ApiContextType<TestClient>);
 };

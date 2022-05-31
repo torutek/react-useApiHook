@@ -7,7 +7,7 @@ export function ApiExampleComponent() {
 	const [apiFetchObjLoading, setApiFetchObjLoading] = useState(false);
 
 	const api = useApiFetch();
-	const res = useApi(x => x.accessoryV1List("test"), "Loaded");
+	const res = useApi(x => x.accessoryV1List("test"), "useApi result loaded");
 	const mutateAccessory = useApiMutate(x => x.accessoryV1Update, "Updated acc " + count);
 
 	return (

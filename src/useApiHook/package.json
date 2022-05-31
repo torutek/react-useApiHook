@@ -1,8 +1,8 @@
 {
   "name": "react-use-api-hook",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Api client hook wrapper",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "npx tsc --jsx react"
   },
@@ -12,5 +12,6 @@
   "license": "MIT",
   "devDependencies": {
     "typescript": "^4.7.2"
-  }
+  },
+  "files": ["package.json","README.md","dist/*.js","dist/*.ts"]
 }
