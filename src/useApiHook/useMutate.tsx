@@ -36,7 +36,9 @@ export function useApiMutateBase<Client, InputFunc extends (...args: any[]) => a
 				setResult(result);
 			}
 			setError(undefined);
-			apiClientContext.onSuccess(successMessage);
+			if (successMessage) {
+				apiClientContext.onSuccess(successMessage);
+			}
 		} catch (ex) {
 			setIsSuccess(false);
 			setResult(undefined);
