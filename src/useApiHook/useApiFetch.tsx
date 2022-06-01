@@ -18,7 +18,7 @@ export class FetchClient<C> {
 		this._apiContext = apiContext;
 	}
 
-	fetch<T>(clientMethod: (client: C) => Promise<T> | undefined, successMessage: string = 'success'): Promise<FetchObj<T>> {
+	fetch<T>(clientMethod: (client: C) => Promise<T> | undefined, successMessage: string = ''): Promise<FetchObj<T>> {
 		const promise = new Promise<FetchObj<T>>(async (resolve, reject) => {
 			try {
 				var result = await clientMethod(this._apiContext.apiClient) as T;
