@@ -1,3 +1,4 @@
+import { useSnackbar } from 'notistack';
 import React, { useState } from 'react';
 import { useApi, useApiFetch, useApiMutate } from './configureUseApi';
 
@@ -8,11 +9,14 @@ export function ApiExampleComponent() {
 
 	const api = useApiFetch();
 	const res = useApi(x => x.accessoryV1List("test"), "useApi result loaded");
-	const mutateAccessory = useApiMutate(x => x.accessoryV1Update, "Updated acc " + count);
+	const mutateWithResponse = useApiMutate(x => x.testV1UpdateWithResponse, "Updated acc " + count);
+	const mutateNoResponse = useApiMutate(x => x.testV1UpdateNoResponse, "Updated acc " + count);
+
+	const sb = useSnackbar();
 
 	return (
 		<div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr' }}>
-			<table width={800} style={{ gridColumn: 2 }}>
+			<table width={900} style={{ gridColumn: 2 }}>
 				<thead>
 					<tr>
 						<th>Description</th>
@@ -62,21 +66,45 @@ export function ApiExampleComponent() {
 					</tr>
 
 					<tr>
-						<td>useMutate hook</td>
+						<td>useMutate hook no response</td>
 						<td>
 							<button onClick={async () => {
-								await mutateAccessory.execute("n_" + count, count)
+								await mutateNoResponse.execute("n_" + count, count)
 								setCount(c => {
 									return c + 1;
 								});
 							}}>Mutate</button>
 						</td>
 						<td>
-							{mutateAccessory.isLoading && <div>Loading</div>}
+							{mutateNoResponse.isLoading && <div>Loading</div>}
 						</td>
 						<td>
-							{mutateAccessory.error && <div>Error: {mutateAccessory.error}</div>}
-							{mutateAccessory.isSuccess && <div>{mutateAccessory.result!.accName}</div>}
+							{mutateNoResponse.error && <div>Error: {mutateNoResponse.error}</div>}
+							{mutateNoResponse.isSuccess && <div>Success</div>}
+						</td>
+					</tr>
+
+					<tr>
+						<td>useMutate hook with response</td>
+						<td>
+							<button onClick={async () => {
+								var res = await mutateWithResponse.execute("n_" + count, count)
+								if (res)
+									sb.enqueueSnackbar("Mutate applied, res: "+res.accName);
+								else {
+									sb.enqueueSnackbar("Mutate failed");
+								}
+								setCount(c => {
+									return c + 1;
+								});
+							}}>Mutate</button>
+						</td>
+						<td>
+							{mutateWithResponse.isLoading && <div>Loading</div>}
+						</td>
+						<td>
+							{mutateWithResponse.error && <div>Error: {mutateWithResponse.error}</div>}
+							{mutateWithResponse.isSuccess && <div>{mutateWithResponse.result!.accName}</div>}
 						</td>
 					</tr>
 				</tbody>
