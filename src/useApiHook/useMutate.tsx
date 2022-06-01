@@ -25,7 +25,7 @@ export function useApiMutateBase<Client, InputFunc extends (...args: any[]) => a
 		setLoading(true);
 		try {
 			var clientMethod = clientMethodGetter(apiClientContext.apiClient as Client) as InputFunc;
-			var result = await clientMethod(...args);
+			var result = await clientMethod.call(apiClientContext.apiClient as Client, ...args);
 			setResult(result);
 			setError(undefined);
 			apiClientContext.onSuccess(successMessage);
