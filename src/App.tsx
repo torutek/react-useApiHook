@@ -6,7 +6,7 @@ import { ApiExampleComponent } from './testComponent';
 import './App.css';
 import { AppTestClient } from './configureUseApi';
 import { TestClient } from './fakeClient';
-import { ApiClientContext, ApiContextType } from 'react-use-api-hook';
+import { ApiClientContext, ApiContextType } from '@torutek/react-use-api-hook';
 
 export let SnackbarRef: SnackBarProviderContext;
 const SnackbarUtilsConfigurator: React.FunctionComponent = () => {

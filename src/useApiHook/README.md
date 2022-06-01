@@ -1,46 +1,16 @@
 # Getting started with useApi hook
 
-## Step 1
+This package makes interacting with class based api's easier with nice Api endpoint autocomplete via IntelliSense.
+Because we are using generated clients (i.e. NSwag typescript client) no URL strings are needed through your application :)
 
-Create a api + hook provider using your specific api client, i.e.
+## Step 1, install package
+```npm i @torutek/react-use-api-hook```   
+or   
+```yarn add @torutek/react-use-api-hook```
 
-```
-var isDev = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
+## Step 2, customize for your api client
 
-var apiContextValue = {
-	strictModeSkipDebugMountRequest: isDev, // Optional
-	apiClient: AppTestClient,
-	onSuccess: (message) => {
-		SnackbarRef.enqueueSnackbar(message, { variant: 'success' })
-	},
-	onError: (error) => {
-		SnackbarRef.enqueueSnackbar('Request failed: ' + (error), { variant: 'error' })
-	}
-} as ApiContextType<TestClient>
-
-```
-
-## Note:
-set strictModeSkipDebugMountRequest to true during dev time to stop React 18 from calling your api 2x per component creation
-when using ```useApiBase```
-
-AppTestClient is an instance of your Api client
-
-OnSuccess and OnError are callbacks allowing you to hook into a Global notifier, in this case we are using Notistack
-
-OnError will pass exceptions thrown by your api client
-
-## Step 2, wrap your app with the ApiClientContext provider
-
-```
-<ApiClientContext.Provider value={apiContextValue}>
-	<App/>
-</ApiClientContext.Provider>
-```
-
-## Step 3
-
-Extend the provided base hooks and fetch obj by supplying your api clients type, this removes the need to have your ApiClient type passed as a generic type each time you use a hook
+Extend the provided base hooks and fetch obj by supplying your api clients type (TestClient in this case), this removes the need to have the ApiClient type passed as a generic type each time you use a hook.   
 
 
 ```
@@ -66,6 +36,45 @@ export function useApiFetch(): FetchClient<TestClient> {
 	return new FetchClient(apiContext as ApiContextType<TestClient>);
 };
 ```
+## Step 3, setup
+
+Create a api + hook provider using your specific api client, i.e. (import AppTestClient from step 2)
+
+```
+var isDev = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
+
+var apiContextValue = {
+	strictModeSkipDebugMountRequest: isDev, // Optional
+	apiClient: AppTestClient,
+	onSuccess: (message) => {
+		SnackbarRef.enqueueSnackbar(message, { variant: 'success' })
+	},
+	onError: (error) => {
+		SnackbarRef.enqueueSnackbar('Request failed: ' + (error), { variant: 'error' })
+	}
+} as ApiContextType<TestClient>
+
+```
+
+### Note:
+set strictModeSkipDebugMountRequest to true during dev time to stop React 18 from calling your api 2x per component creation
+when using ```useApiBase```
+
+apiContextValue is an instance of your Api client from step 3
+
+OnSuccess and OnError are callbacks allowing you to hook into a Global notifier, in this case we are using Notistack
+
+OnError will pass exceptions thrown by your api client
+
+## Step 2, wrap your app with the ApiClientContext provider
+
+```
+<ApiClientContext.Provider value={apiContextValue}>
+	<App/>
+</ApiClientContext.Provider>
+```
+
+
 
 ## Step 4, use the hooks
 
